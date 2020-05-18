@@ -15,10 +15,8 @@ for image in listdir(dir):
 	imagelist.append(img)
 
 OutputName = input('Enter Output PDF Name : ')
-if OutputName.endswith('.pdf'):
-	print('Extension found')
-else:
-	OutputName = OutputName + '.pdf'
+if OutputName.endswith('.pdf') is False:  # No extension found
+	OutputName = OutputName + '.pdf'	
 
 im1 = imagelist[0]
 imagelist.pop(0)
