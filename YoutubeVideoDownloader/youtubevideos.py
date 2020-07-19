@@ -7,7 +7,6 @@ from tkinter import *
 master = tk.Tk()
 dest = StringVar()
 
-
 def download_video():
 	if dest.get() is '':  # Check whether User chosen Destination or not
 		destination_label.configure(text='Please Select Destination!')
@@ -53,10 +52,7 @@ def sel():   # Radio Button Function On Choosing
    		selection = "You selected to Download Full playlist"
    		label.config(text = selection)	
 master.title("Youtube Downloader")
-
 tk.Label(master,text="Enter URL Here").grid(row=0)
-
-
 e1 = tk.Entry(master , textvariable='Ctrl + V')
 e1.grid(row=0, column=1)
 
@@ -65,18 +61,11 @@ tk.Button(master, text='Select Destination', command=destination).grid(row=0, co
 destination_label = ttk.Label(master, text= "Don't Click Anything While Downloading Videos" , foreground = 'red' , background = 'white' ,font = ('Times New Roman' , 16 , 'bold'))
 destination_label.grid(column = 6, row = 0 , sticky=tk.W,pady=4)
 
-
 var = IntVar()
-R1 = Radiobutton(master, text="Download Full Playlist", variable=var, value=1,
-                  command=sel).grid(row= 4 , column = 0)
-
-R2 = Radiobutton(master, text="Range of Videos", variable=var, value=2,
-                  command=sel).grid(row= 5 , column = 0)
+R1 = Radiobutton(master, text="Download Full Playlist", variable=var, value=1,command=sel).grid(row= 4 , column = 0)
+R2 = Radiobutton(master, text="Range of Videos", variable=var, value=2,command=sel).grid(row= 5 , column = 0)
 ran = tk.Entry(master , width=10)
-
 ran.grid(row=5, column=1)
-
-
 label = Label(master)
 label.grid(row= 7 , column = 0)
 tk.mainloop()
