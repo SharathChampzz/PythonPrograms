@@ -27,21 +27,18 @@ def download_video():
 				cmd = 'youtube-dl -i ' + link
 				th = threading.Thread(target=running, args=(cmd,))
 				th.start()
-				#subprocess.call(cmd, shell=True, cwd=dest.get())
 			elif var.get() == 2:
 				destination_label.configure(text='Downloading.. Range of Videos All Actions will be Stopped!')
 				r = ran.get().split('-')
 				cmd = 'youtube-dl --playlist-start ' + str(r[0]) + ' --playlist-end ' + str(r[1]) + ' ' + link
 				th = threading.Thread(target=running, args=(cmd,))
 				th.start()
-				#subprocess.call(cmd, shell=True, cwd=dest.get())
 			else:
 				destination_label.configure(text='Some Error!')
 		else:     # Single Video Link Found and it will download
 			cmd = 'youtube-dl -i ' + link.split('&')[0]
 			th = threading.Thread(target=running, args=(cmd,))
 			th.start()
-			#subprocess.call(cmd, shell=True, cwd=dest.get())
 
 def destination():  # Opening File Dialog to select Destination Folder
 	global dest
