@@ -1,5 +1,4 @@
 # pip install docx2pdf pillow PyPDF2
-# Code is not optimised one , will do that in future
 import tkinter as tk
 from tkinter import ttk
 from tkinter import *
@@ -13,6 +12,7 @@ import sys
 import comtypes.client
 from time import sleep
 import subprocess
+import threading 
 
 def action(variable):
 	global sourcevar , destvar , mynumber , perform
@@ -58,13 +58,13 @@ def result():
 	print('Process Running...')
 	try:
 		if perform == "Docx to PDF":
-			docx2pdf()
+			th = threading.Thread(target=docx2pdf).start()
 		elif perform == "Images to PDF":
-			im2pdf()
+			th = threading.Thread(target=im2pdf).start()
 		elif perform == "Merge PDFs":
-			mergepdf()
+			th = threading.Thread(target=mergepdf).start()
 		elif perform == "PPT to PDF":
-			ppt2pdf()
+			th = threading.Thread(target=ppt2pdf).start()
 		elif perform == "":
 			print("Please Select Action Above Before Trying!!")
 			resultlab.configure(text= f'Saved! PDFs at {destvar}')
