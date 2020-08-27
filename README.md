@@ -1,2 +1,2 @@
 # PythonPrograms
-This repository contains python programs
+Simple and Easy Python Projects
