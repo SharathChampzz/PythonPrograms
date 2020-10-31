@@ -2,7 +2,10 @@ from instabot import Bot
 from tkinter.filedialog import askopenfilename
 from tkinter import *
 import threading
-from up import username, password
+
+
+username = ''  # Enter User name and Password 
+password = ''
 
 bot = Bot() 
 bot.login(username = username, password = password)
