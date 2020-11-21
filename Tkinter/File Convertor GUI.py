@@ -80,6 +80,14 @@ def result():
 	except Exception as e:
 		resultlab.configure(text = e)
 
+def downloadmodules():
+	resultlab.configure(text= 'See Progress in Background Window!')
+	subprocess.run('pip install docx2pdf pillow PyPDF2 pdf2docx'.split())
+	resultlab.configure(text= 'Done..!')
+
+def install():
+	th = threading.Thread(target=downloadmodules).start()
+
 def docx2pdf():
 	resultlab.configure(text= 'Please Wait... Converting Docx to PDF')
 	print('Converting Docx to PDF')
@@ -181,7 +189,10 @@ browse2.grid(column = 2 , row = 6  , ipady = 4 , ipadx = 5)
 button = ttk.Button(window, text = "Run", command = result)
 button.grid(column = 2, row = 8)
 
-resultlab = ttk.Label(window, text= "Actions Will be Displayed Here" , foreground = 'red' , background = 'white' ,font = ('Times New Roman' , 16 , 'bold') )
+resultlab = ttk.Label(window, text= "Actions Will be Displayed Here" , foreground = 'red' , background = 'white' ,font = ('Times New Roman' , 16 , 'bold'))
 resultlab.grid(column = 1, row = 10 , ipady = 15 , ipadx = 10)
+
+button = ttk.Button(window, text = "Click here to Install Modules", command = install)
+button.grid(column = 2, row = 11)
 
 window.mainloop()
