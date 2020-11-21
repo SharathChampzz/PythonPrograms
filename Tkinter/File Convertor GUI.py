@@ -1,4 +1,4 @@
-# pip install docx2pdf pillow PyPDF2
+# pip install docx2pdf pillow PyPDF2 pdf2docx
 import tkinter as tk
 from tkinter import ttk
 from tkinter import *
@@ -19,9 +19,14 @@ def action(variable):
 	perform = mynumber.get()
 	if perform == "Docx to PDF":
 		if variable == 2:
-			act = "PDF will be saved in the Same directory!"
+			act = "Output PDF will be saved in the Same directory!"
 		else:
 			act = filedialog.askopenfilename(filetypes = [("Docx File" , "*.docx")])
+	elif perform == "PDF to Docx":
+		if variable == 2:
+			act = "Output Docx will be saved in the Same directory!"
+		else:
+			act = filedialog.askopenfilename(filetypes = [("PDF File" , "*.pdf")])
 	elif perform == "Images to PDF" or perform == "Merge PDFs" or perform == "PPT to PDF":
 		act = filedialog.askdirectory()
 	elif perform == "":
@@ -65,6 +70,8 @@ def result():
 			th = threading.Thread(target=mergepdf).start()
 		elif perform == "PPT to PDF":
 			th = threading.Thread(target=ppt2pdf).start()
+		elif perform == "PDF to Docx":
+			th = threading.Thread(target=pdftodocx).start()
 		elif perform == "":
 			print("Please Select Action Above Before Trying!!")
 			resultlab.configure(text= f'Saved! PDFs at {destvar}')
@@ -137,6 +144,11 @@ def ppt2pdf():
 	    slides.Close()
 	    resultlab.configure(text= f'Saved! PDFs at {destvar}')
 
+def pdftodocx():
+	resultlab.configure(text= 'Please Wait... Converting PDF to Docx')
+	subprocess.run(['pdf2docx', sourcevar])
+	destvar = sourcevar.replace('.docx','.pdf')
+	resultlab.configure(text= f'File Sucessfully Saved as {destvar}')
 
 window = tk.Tk()
 window.minsize(400, 200)
@@ -152,7 +164,7 @@ destvar = StringVar()
 perform = StringVar()
 
 combobox = ttk.Combobox(window, width = 15 , textvariable = mynumber)
-combobox['values'] = ("Docx to PDF","Images to PDF","Merge PDFs","PPT to PDF")
+combobox['values'] = ("Docx to PDF","Images to PDF","Merge PDFs","PPT to PDF", "PDF to Docx")
 combobox.grid(column = 2, row = 1)
 
 
